@@ -1,0 +1,95 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Juliet Oma",
+      "email": "julie@yahoo.com",
+      "number": "08100000000"
+    },
+    {
+      "id": 2,
+      "name": "James Williams",
+      "email": "jameswilly@gmail.com",
+      "number": "08111111111"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 4,
+      "userId": 1,
+      "title": "New Task",
+      "description": "Description for new task.",
+      "status": "TODO"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "title": "Another Task",
+      "description": "Description for another task.",
+      "status": "PROGRESS"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "title": "Third Task",
+      "description": "Description for third task.",
+      "status": "DONE"
+    },
+    {
+      "id": 7,
+      "userId": 1,
+      "title": "Fourth Task",
+      "description": "Description for fourth task.",
+      "status": "TODO"
+    },
+    {
+      "id": 8,
+      "userId": 1,
+      "title": "Fifth Task",
+      "description": "Description for fifth task.",
+      "status": "PROGRESS"
+    },
+    {
+      "id": 9,
+      "userId": 1,
+      "title": "Sixth Task",
+      "description": "Description for sixth task.",
+      "status": "DONE"
+    },
+    {
+      "id": 10,
+      "userId": 1,
+      "title": "Seventh Task",
+      "description": "Description for seventh task.",
+      "status": "TODO"
+    },
+    {
+      "id": 11,
+      "userId": 1,
+      "title": "Eighth Task",
+      "description": "Description for eighth task.",
+      "status": "PROGRESS"
+    },
+    {
+      "id": 12,
+      "userId": 1,
+      "title": "Ninth Task",
+      "description": "Description for ninth task.",
+      "status": "DONE"
+    },
+    {
+      "id": 13,
+      "userId": 1,
+      "title": "Tenth Task",
+      "description": "Description for tenth task.",
+      "status": "TODO"
+    },
+    {
+      "id": "d70a",
+      "title": "Test 2",
+      "description": "Tarea de ejemplo 2",
+      "status": "PROGRESS",
+      "userId": 0
+    }
+  ]
+}
