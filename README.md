@@ -1,8 +1,48 @@
+
+# Task Managment App
+<img src="/resources/task-managment.png">
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Initializing Mock API using task-management-back with json-server and json-server-auth
 
-First, run the development server:
+To set up a mock API using the `task-management-back` repository and `json-server-auth`, follow these steps:
+
+1. Clone the `task-management-back` repository:
+
+```bash
+git clone https://github.com/theorlan2/task-management-back.git
+cd task-management-back
+```
+
+2. Install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the mock API server:
+
+```bash
+npm run start
+# or
+yarn run start
+# or
+pnpm run start
+```
+
+Now, the Next.js project can connect to the mock API running on `http://localhost:4000`. You can modify the data in `src/db.json` to test the application.
+
+
+
+
+## Getting Started Frontend
+
+Now run the development server:
 
 ```bash
 npm run dev
@@ -29,8 +69,22 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Inside the project directory, you'll find some important files and directories:
+
+- `public`: This is where static assets such as images and fonts are stored.
+- `src`: This is where your application code lives. It contains several subdirectories for different types of files (stylesheets, scripts etc).
+  - `app`: The businnes logic of the application.
+    - `components`: The globals components of the application.
+  - `context`: Contains context providers and related functions for sharing data across components.
+  - `hooks`: Contains custom React hooks to reuse logic between multiple components or pages.
+  - `lib`: Contains utility functions, constants, or other shared code that doesn't fit into other categories.
+    - `features`: This folder will contain Redux (RTK) logic for various application features.
+    - `store.tsx`: The main Redux store for the application, including configureStore function and related setup.
+  - `middlewares`: Contains custom middleware functions to handle side effects or manage data in asynchronous operations.
+  - `services`: Contains API clients, utilities for communicating with external systems, and data processing modules.
+  - `types`: Defines interfaces, enums, and type aliases used throughout the application.
+  - `index.html`: The main entry point of the application.
+- `yarn.lock` : These files are used by Yarn to manage dependencies.

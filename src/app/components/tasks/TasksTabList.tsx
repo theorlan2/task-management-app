@@ -33,19 +33,19 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
   return (
     <div className="w-full">
       <TabGroup>
-        <TabList className="flex gap-4 w-full bg-black dark:bg-white/5 rounded-full p-1">
-          <Tab className="rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white">
+        <TabList className="flex gap-4 justify-between w-full bg-black dark:bg-white/5 rounded-full p-1">
+          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black data-[selected]:bg-white/10 data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
             To Do
           </Tab>
-          <Tab className="rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white">
+          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black data-[selected]:bg-white/10 data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
             Progress
           </Tab>
-          <Tab className="rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white">
+          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black data-[selected]:bg-white/10 data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
             Completed
           </Tab>
         </TabList>
         <TabPanels className="mt-3">
-          <TabPanel className="rounded-xl bg-white/5 p-3">
+          <TabPanel className="rounded-xl bg-white/5 sm:p-3">
             <ul>
               {taskInTodo &&
                 taskInTodo.map((task) => (
@@ -59,7 +59,7 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
                 ))}
             </ul>
           </TabPanel>
-          <TabPanel className="rounded-xl bg-white/5 p-3">
+          <TabPanel className="rounded-xl bg-white/5 sm:p-3">
             <ul>
               {taskInProgress &&
                 taskInProgress.map((task) => (
@@ -73,7 +73,7 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
                 ))}
             </ul>
           </TabPanel>
-          <TabPanel className="rounded-xl bg-white/5 p-3">
+          <TabPanel className="rounded-xl bg-white/5 sm:p-3">
             <ul>
               {taskDone &&
                 taskDone.map((task) => (

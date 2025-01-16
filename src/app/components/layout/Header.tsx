@@ -8,7 +8,7 @@ import { useAuth } from "@/context/AuthContexts";
 
 const Header = () => {
   const { isLogged, logout, userData } = useAuth();
-
+  console.log("userData", userData);
   return (
     <header className="flex w-full shadow-sm mb-2 py-2 border-b border-gray-50 dark:border-white">
       <div className="container mx-auto px-4 xl:px-0">
@@ -41,12 +41,14 @@ const Header = () => {
                   />
                 </svg>
               </div>
-              <p className="name text-sm mx-2">{userData && userData.name}</p>
+              <p className="name hidden sm:block text-sm mx-2">
+                {userData && userData.name}
+              </p>
             </div>
             {!isLogged && (
               <Link
                 href={"/auth/login"}
-                className="bg-primary-blue rounded-sm p-2 px-4 ml-2 text-white"
+                className="bg-gray-600 rounded-full p-2 px-4 ml-2 text-white"
               >
                 Login
               </Link>
@@ -54,7 +56,7 @@ const Header = () => {
             {isLogged && (
               <button
                 onClick={logout}
-                className="bg-primary-blue rounded-sm px-4 ml-2 text-white"
+                className="bg-gray-600 rounded-full px-4 ml-2 text-white"
               >
                 Logout
               </button>

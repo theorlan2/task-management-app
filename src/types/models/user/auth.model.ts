@@ -1,3 +1,6 @@
+import { UserI } from "./user.model";
+
 export type AuthToken = {
-  token: string;
+  accessToken: string;
+  user: UserI;
 };

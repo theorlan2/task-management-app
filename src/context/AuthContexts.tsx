@@ -6,7 +6,7 @@ import { UserI } from "@/types/models/user/user.model";
 
 type AuthContextsType = {
   isLogged: boolean;
-  token: string;
+  token?: string;
   userData: UserI;
   setUserData: (value: UserI) => void;
   setAuthData: (value: AuthToken) => void;

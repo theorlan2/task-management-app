@@ -9,7 +9,7 @@ import { getCookie } from "@/lib/jsCookies";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api",
+    baseUrl: process.env.NEXT_PUBLIC_API_URL,
     prepareHeaders: (headers) => {
       const token = getCookie("accessToken");
       headers.append("content-type", "application/json");
@@ -21,7 +21,7 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     loginUser: builder.mutation<AuthToken, LoginCriteria>({
       query: (data) => ({
-        url: "/auth/login",
+        url: "/login",
         method: "POST",
         body: data,
       }),

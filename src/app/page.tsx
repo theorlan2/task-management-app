@@ -37,6 +37,7 @@ export default function Home() {
         toast.success("Task updated");
         setIsOpenCreateOrEditDialog(false);
       } catch (e) {
+        console.error("Error updating task:", e);
         toast.error("Error updating task");
       }
     } else {
@@ -45,6 +46,7 @@ export default function Home() {
         toast.success("Task created");
         setIsOpenCreateOrEditDialog(false);
       } catch (e) {
+        console.error("Error creating task:", e);
         toast.error("Error creating task");
       }
     }
@@ -52,15 +54,16 @@ export default function Home() {
   async function deleteTask(data?: Task) {
     if (data) {
       try {
-        toast.promise(sendDeleteTask(data.id), {
+        toast.promise(sendDeleteTask(data.id ?? 0), {
           loading: "Loading...",
-          success: (_data) => {
+          success: () => {
             return `${data.title} toast has been delete`;
           },
           error: "Error deleting task",
         });
       } catch (e) {
-        toast.error("Error updating task");
+        console.error("Error deleting task:", e);
+        toast.error("Error deleting task");
       }
     }
   }
@@ -77,13 +80,13 @@ export default function Home() {
   }
 
   return (
-    <div className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="items-center justify-items-center min-h-screen p-4 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="my-4  w-full">
         <div className="container mx-auto">
           <div className="w-full flex flex-col gap-8 row-start-2 items-center">
             <div className="w-full  max-w-xl">
-              <h3 className="text-lg">Tasks </h3>
-              <div className="border border-white/35 rounded-lg p-4">
+              <h3 className="text-xl mb-2">Tasks </h3>
+              <div className="border border-gray-200 dark:border-white/35 rounded-lg p-2 sm:p-4">
                 <TasksTabList onSubmitDelete={deleteTask} onEdit={editTask} />
               </div>
             </div>
@@ -92,17 +95,9 @@ export default function Home() {
                 onClick={() => setIsOpenCreateOrEditDialog(true)}
                 className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
               >
-                Create task
+                Add task
                 <i className="ri-add-line"></i>
               </Button>
-              <a
-                className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-                href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read our docs
-              </a>
             </div>
             <CreateOrUpdateTaskDialog
               dataTask={taskToEdit}

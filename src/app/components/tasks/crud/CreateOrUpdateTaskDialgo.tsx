@@ -19,6 +19,7 @@ import { Task } from "@/types/models/task/task.model";
 import { TaskStatusEnum } from "@/types/enums/task.enum";
 
 const taskSchema = yup.object().shape({
+  id: yup.string().optional().optional(),
   title: yup.string().required(),
   description: yup.string().optional().nullable(),
   status: yup.string().required(),
@@ -87,7 +88,7 @@ const CreateOrUpdateTaskDialog = ({
           <div className="flex min-h-full items-center justify-center bg-black/50 p-4">
             <DialogPanel
               transition
-              className="w-full max-w-xl rounded-xl bg-white dark:bg-gray-700 p-6  duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              className="w-full max-w-xl rounded-xl bg-white dark:bg-gray-700 p-6 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
             >
               <DialogTitle as="h3" className="text-lg font-medium text-white">
                 {dataTask ? ` Update task` : `Create new task`}
@@ -165,7 +166,7 @@ const CreateOrUpdateTaskDialog = ({
                           <select
                             {...field}
                             disabled={isLoading}
-                            className="mt-1  block w-full rounded-lg border-borders-gray border-[1px] shadow-sm bg-white/5 py-1.5 px-3 text-sm/6 text-primary-black  focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/2 dark:text-gray-500"
+                            className="mt-1  block w-full rounded-lg border-borders-gray border-[1px] shadow-sm bg-white/5 py-1.5 px-3 text-sm/6 text-primary-black  focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/2 dark:bg-white dark:text-black"
                           >
                             <option value="TODO">Todo</option>
                             <option value="PROGRESS">In Progress</option>
@@ -188,7 +189,7 @@ const CreateOrUpdateTaskDialog = ({
                     <Button
                       type="submit"
                       disabled={isLoading}
-                      className="rounded-full dark:bg-white text-black transition-colors flex gap-2 items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] dark:hover:text-white hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
+                      className="rounded-full dark:bg-white text-black transition-colors flex gap-2 items-center justify-center bg-gray-300 hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] dark:hover:text-white hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
                     >
                       {dataTask ? `Update` : `Create`}
                       <i className="ri-save-line"></i>

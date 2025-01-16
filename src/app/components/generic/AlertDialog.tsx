@@ -34,13 +34,13 @@ export default function AlertDialog({ isOpen, setIsOpen, onIsOk }: Props) {
               </p>
               <div className="mt-4 flex justify-end gap-3">
                 <Button
-                  className="inline-flex items-center gap-2 rounded-md bg-neutral-gray-200 py-1.5 px-3 text-sm/6 font-semibold text-black shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-neutral-gray-300 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-neutral-gray-200"
+                  className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] dark:hover:text-white hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
                   onClick={close}
                 >
                   Cancel
                 </Button>
                 <Button
-                  className="inline-flex items-center gap-2 rounded-md border border-red-500 py-1.5 px-3 text-sm/6 font-semibold text-red-500 shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-red-200 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-red-500"
+                  className="rounded-full border border-solid border-red-400 text-red-400 dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] dark:hover:text-white hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
                   onClick={() => {
                     // Add the logic to delete the element here
                     close();

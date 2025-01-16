@@ -1,5 +1,9 @@
+"use client";
 import { FunctionComponent, ReactElement } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+//
+import { useRouter } from "next/navigation";
 //
 import {
   clearAuth,
@@ -21,6 +25,7 @@ type Props = {
 };
 
 export const AuthProvider: FunctionComponent<Props> = (props) => {
+  const router = useRouter();
   const { getCookie, setTheCookie, deleteCookie } = useCookies();
   const userData = useSelector((state: RootState) => state.auth.dataUser);
   const isLogged = useSelector((state: RootState) => state.auth.isLogged);
@@ -28,7 +33,7 @@ export const AuthProvider: FunctionComponent<Props> = (props) => {
   const dispatch = useDispatch();
 
   function setAuthData(data: AuthToken) {
-    setTheCookie("accessToken", data.token);
+    setTheCookie("accessToken", data.accessToken);
     dispatch(saveAuth(data));
     dispatch(setIsLogged(true));
   }
@@ -40,6 +45,7 @@ export const AuthProvider: FunctionComponent<Props> = (props) => {
   function logout() {
     dispatch(clearAuth());
     deleteCookie("accessToken");
+    router.push("/auth/login");
     // window.localStorage.removeItem("persist:tasksApp");
     // window.localStorage.setItem("persist:tasksApp", "");
   }
