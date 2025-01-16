@@ -11,7 +11,7 @@ import AlertDialog from "../generic/AlertDialog";
 import { Task } from "@/types/models/task/task.model";
 import { useState } from "react";
 
-type Props = {
+export type Props = {
   onSubmitDelete: (task?: Task) => void;
   onEdit: (task: Task) => void;
 };
@@ -19,7 +19,7 @@ type Props = {
 const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
   const [isOpenAlertDialog, setIsOpenAlertDialog] = useState(false);
   const [temporalTask, setTemporalTask] = useState<Task>();
-  const { data, isFetching } = useGetTasksQuery();
+  const { data, isFetching, isError } = useGetTasksQuery();
 
   const taskInTodo = useFilterTaskByStatus(data, TaskStatusEnum.TODO);
   const taskInProgress = useFilterTaskByStatus(data, TaskStatusEnum.PROGRESS);
@@ -34,13 +34,13 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
     <div className="w-full">
       <TabGroup>
         <TabList className="flex gap-4 justify-between w-full bg-black dark:bg-white/5 rounded-full p-1">
-          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black data-[selected]:bg-white/10 data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
+          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black  data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
             To Do
           </Tab>
-          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black data-[selected]:bg-white/10 data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
+          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black  data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
             Progress
           </Tab>
-          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black data-[selected]:bg-white/10 data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
+          <Tab className="flex justify-center w-full rounded-full py-1 px-3 text-sm/6 font-semibold text-white data-[selected]:border border-white dark:border-0 focus:outline-none data-[selected]:bg-white data-[selected]:text-black  data-[hover]:bg-white/20 data-[selected]:data-[hover]:bg-white/70  data-[focus]:outline-1 data-[focus]:outline-white">
             Completed
           </Tab>
         </TabList>
@@ -108,10 +108,14 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
               fill="currentFill"
             />
           </svg>
-          <span className="sr-only">Loading...</span>
+          <span className="text-black dark:text-white sr-only">Loading...</span>
         </div>
       )}
-
+      {isError && (
+        <div className="w-full p-2">
+          <p className="text-lg text-red-300">Oh no, there was an error</p>
+        </div>
+      )}
       <div className="w-full text-center ">
         {!data && (
           <div className="relative  p-3 text-sm/6 transition  ">

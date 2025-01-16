@@ -4,8 +4,6 @@ import { getCookie } from "@/lib/jsCookies";
 import { Task } from "@/types/models/task/task.model";
 import { TaskCriteria } from "@/types/criterias/task/task.criteria";
 
-console.log("process.env.API_URL", process.env.NEXT_PUBLIC_API_URL);
-
 export const tasksApi = createApi({
   reducerPath: "tasksApi",
   baseQuery: fetchBaseQuery({

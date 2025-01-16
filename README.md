@@ -2,7 +2,9 @@
 # Task Managment App
 <img src="/resources/task-managment.png">
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This Task Managment App project is built using [Next.js](https://nextjs.org) and provide a user-friendly platform for managing tasks efficiently.
+It integrates a mock API server using `task-management-back` repository and `json-server-auth`.The API is create to help the frontend connect and manipulate data as needed.
+
 
 ## Initializing Mock API using task-management-back with json-server and json-server-auth
 
@@ -37,9 +39,6 @@ pnpm run start
 
 Now, the Next.js project can connect to the mock API running on `http://localhost:4000`. You can modify the data in `src/db.json` to test the application.
 
-
-
-
 ## Getting Started Frontend
 
 Now run the development server:
@@ -57,6 +56,30 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+## Running Tests and Test Coverage Analysis
+
+To run the tests, you can use `jest` with the following command:
+
+```bash
+npm test
+# or
+yarn test
+# or
+pnpm test
+```
+
+To generate the test coverage report, use this command:
+
+```bash
+npx jest --coverage
+# or
+yarn test:coverage
+# or
+pnpm test:coverage
+```
+
+Open `coverage/lcov-report/index.html` in your browser to view the code coverage report.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
