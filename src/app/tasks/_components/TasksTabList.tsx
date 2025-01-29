@@ -6,29 +6,19 @@ import useFilterTaskByStatus from "@/hooks/useFilterTaskByStatus";
 
 import TaskCard from "./TaskCard";
 
-import { TaskStatusEnum } from "@/types/enums/task.enum";
-import AlertDialog from "../generic/AlertDialog";
-import { Task } from "@/types/models/task/task.model";
-import { useState } from "react";
+import { TaskStatusEnum } from "@/types/task/task.enum";
+import { Task } from "@/types/task/task.model";
 
 export type Props = {
-  onSubmitDelete: (task?: Task) => void;
-  onEdit: (task: Task) => void;
+  onSubmitDelete: (task: Task) => void;
 };
 
-const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
-  const [isOpenAlertDialog, setIsOpenAlertDialog] = useState(false);
-  const [temporalTask, setTemporalTask] = useState<Task>();
+const TasksTabList = ({ onSubmitDelete }: Props) => {
   const { data, isFetching, isError } = useGetTasksQuery();
 
   const taskInTodo = useFilterTaskByStatus(data, TaskStatusEnum.TODO);
   const taskInProgress = useFilterTaskByStatus(data, TaskStatusEnum.PROGRESS);
   const taskDone = useFilterTaskByStatus(data, TaskStatusEnum.DONE);
-
-  function openDialogAlert(data: Task) {
-    setTemporalTask(data);
-    setIsOpenAlertDialog(true);
-  }
 
   return (
     <div className="w-full">
@@ -52,8 +42,7 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
                   <li key={task.id} className="relative ">
                     <TaskCard
                       task={task}
-                      onEdit={onEdit}
-                      onDelete={openDialogAlert}
+                      onDelete={() => onSubmitDelete(task)}
                     />
                   </li>
                 ))}
@@ -66,8 +55,7 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
                   <li key={task.id} className="relative">
                     <TaskCard
                       task={task}
-                      onEdit={onEdit}
-                      onDelete={openDialogAlert}
+                      onDelete={() => onSubmitDelete(task)}
                     />
                   </li>
                 ))}
@@ -80,8 +68,7 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
                   <li key={task.id} className="relative">
                     <TaskCard
                       task={task}
-                      onEdit={onEdit}
-                      onDelete={openDialogAlert}
+                      onDelete={() => onSubmitDelete(task)}
                     />
                   </li>
                 ))}
@@ -123,11 +110,6 @@ const TasksTabList = ({ onSubmitDelete, onEdit }: Props) => {
           </div>
         )}
       </div>
-      <AlertDialog
-        isOpen={isOpenAlertDialog}
-        setIsOpen={setIsOpenAlertDialog}
-        onIsOk={() => onSubmitDelete(temporalTask)}
-      />
     </div>
   );
 };

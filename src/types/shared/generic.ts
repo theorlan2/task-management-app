@@ -1,3 +1,3 @@
-export interface GenericEntity<T = number> {
+export interface GenericEntity<T = string> {
   id?: T;
 }

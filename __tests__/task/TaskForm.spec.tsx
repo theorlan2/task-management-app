@@ -1,10 +1,14 @@
 import React from "react";
+
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import TaskForm from "@/app/components/tasks/crud/TaskForm";
-import { TaskCriteria } from "@/types/criterias/task/task.criteria";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+import TaskForm from "@/app/tasks/_components/TaskForm";
+
+import { TaskCriteria } from "@/types/task/task.criteria";
 
 describe("TaskForm", () => {
   const onSubmitMock = jest.fn();

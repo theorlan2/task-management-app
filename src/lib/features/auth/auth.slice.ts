@@ -3,14 +3,18 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "@/lib/store";
 
-import { AuthToken } from "@/types/models/user/auth.model";
-import { UserI } from "@/types/models/user/user.model";
+import { AuthToken } from "@/types/auth/auth.model";
+import { UserI } from "@/types/user/user.model";
 
-import { AuthState } from "./authState.model";
+export type AuthState = {
+  isLogged: boolean;
+  dataAuth: AuthToken;
+  dataUser: UserI;
+};
 
 const authInitialState: AuthState = {
   isLogged: false,
-  dataAuth: { token: "" },
+  dataAuth: { accessToken: "" },
   dataUser: {} as UserI,
 };
 
@@ -22,7 +26,7 @@ export const authSlice = createSlice({
       state.dataAuth = payload.payload;
     },
     clearAuth: (state) => {
-      state.dataAuth = { token: "" };
+      state.dataAuth = { accessToken: "" };
       state.dataUser = {} as UserI;
       state.isLogged = false;
     },

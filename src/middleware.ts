@@ -5,8 +5,6 @@ import { type NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const authMiddlewareResult = authMiddleware(request);
   if (authMiddlewareResult) return authMiddlewareResult;
-  // const caslMiddlewareResult = caslMiddleware(request);
-  // if (caslMiddlewareResult) return caslMiddlewareResult;
 }
 
 export const config = {

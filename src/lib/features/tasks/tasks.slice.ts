@@ -3,8 +3,11 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "@/lib/store";
 
-import { TasksState } from "./tasksState.model";
-import { Task } from "@/types/models/task/task.model";
+import { Task } from "@/types/task/task.model";
+
+export type TasksState = {
+  tasks: Task[];
+};
 
 const tasksInitialState: TasksState = {
   tasks: [] as Task[],

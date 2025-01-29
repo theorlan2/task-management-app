@@ -47,7 +47,7 @@ const Header = () => {
             </div>
             {!isLogged && (
               <Link
-                href={"/auth/login"}
+                href={"/auth/signin"}
                 className="bg-gray-600 rounded-full p-2 px-4 ml-2 text-white"
               >
                 Login

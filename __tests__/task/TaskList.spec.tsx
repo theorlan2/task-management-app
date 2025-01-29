@@ -1,10 +1,8 @@
 import React, { useId } from "react";
-import { render } from "@testing-library/react";
 
 import { renderWithProviders } from "@/test/test-utils";
 
-import TasksTabList from "@/app/components/tasks/TasksTabList";
-import TaskCard from "@/app/components/tasks/TaskCard";
+import TasksTabList from "@/app/tasks/_components/TasksTabList";
 
 describe("TasksTabList", () => {
   const tasks = [

@@ -45,7 +45,7 @@ export const AuthProvider: FunctionComponent<Props> = (props) => {
   function logout() {
     dispatch(clearAuth());
     deleteCookie("accessToken");
-    router.push("/auth/login");
+    router.push("/auth/signin");
     // window.localStorage.removeItem("persist:tasksApp");
     // window.localStorage.setItem("persist:tasksApp", "");
   }

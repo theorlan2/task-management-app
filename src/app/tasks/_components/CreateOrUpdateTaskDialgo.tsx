@@ -1,9 +1,10 @@
 "use client";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 
-import { TaskCriteria } from "@/types/criterias/task/task.criteria";
-import { Task } from "@/types/models/task/task.model";
 import TaskForm from "./TaskForm";
+
+import { TaskCriteria } from "@/types/task/task.criteria";
+import { Task } from "@/types/task/task.model";
 
 type Props = {
   isOpen: boolean;

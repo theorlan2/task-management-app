@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { getCookie } from "@/lib/jsCookies";
-import { Task } from "@/types/models/task/task.model";
-import { TaskCriteria } from "@/types/criterias/task/task.criteria";
+
+import { Task } from "@/types/task/task.model";
+import { TaskCriteria } from "@/types/task/task.criteria";
 
 export const tasksApi = createApi({
   reducerPath: "tasksApi",
@@ -23,6 +24,12 @@ export const tasksApi = createApi({
       }),
       providesTags: ["tasks"],
     }),
+    getTaskById: builder.query<Task, string>({
+      query: (id) => ({
+        url: `/tasks/${id}`,
+      }),
+      providesTags: ["tasks"],
+    }),
     createTask: builder.mutation<Task, TaskCriteria>({
       query: (data) => ({
         url: "/tasks",
@@ -39,7 +46,7 @@ export const tasksApi = createApi({
       }),
       invalidatesTags: ["tasks"],
     }),
-    deleteTask: builder.mutation<void, number>({
+    deleteTask: builder.mutation<void, string>({
       query: (id) => ({
         url: `/tasks/${id}`,
         method: "DELETE",
@@ -51,6 +58,7 @@ export const tasksApi = createApi({
 
 export const {
   useGetTasksQuery,
+  useGetTaskByIdQuery,
   useCreateTaskMutation,
   useUpdateTaskMutation,
   useDeleteTaskMutation,

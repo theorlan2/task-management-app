@@ -1,4 +1,4 @@
-export type LoginCriteria = {
+export type SigningCriteria = {
   email: string;
   password: string;
 };

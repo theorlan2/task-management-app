@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import Link from "next/link";
 
 import { Button, Field, Input, Label, Textarea } from "@headlessui/react";
 
@@ -7,16 +8,17 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { TaskCriteria } from "@/types/criterias/task/task.criteria";
-import { TaskStatusEnum } from "@/types/enums/task.enum";
-import { Task } from "@/types/models/task/task.model";
+import { TaskCriteria } from "@/types/task/task.criteria";
+import { TaskStatusEnum } from "@/types/task/task.enum";
+import { Task } from "@/types/task/task.model";
+
+import LoadingComponent from "@/app/components/generic/Loading";
 
 type Props = {
   dataTask?: Task;
   isLoading: boolean;
   isError?: boolean;
   onSubmit?: (v: TaskCriteria) => void;
-  setIsOpen: (v: boolean) => void;
 };
 
 const taskSchema = yup.object().shape({
@@ -27,13 +29,7 @@ const taskSchema = yup.object().shape({
   userId: yup.number().optional().nullable(),
 });
 
-const TaskForm = ({
-  dataTask,
-  isLoading,
-  isError,
-  onSubmit,
-  setIsOpen,
-}: Props) => {
+const TaskForm = ({ dataTask, isLoading, isError, onSubmit }: Props) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -43,10 +39,6 @@ const TaskForm = ({
     defaultValues: {},
     resolver: yupResolver<TaskCriteria>(taskSchema),
   });
-
-  function close() {
-    setIsOpen(false);
-  }
 
   function onSubmitForm(data: TaskCriteria) {
     if (onSubmit) {
@@ -68,7 +60,7 @@ const TaskForm = ({
   }, [dataTask, reset]);
 
   return (
-    <form role="form" onSubmit={handleSubmit(onSubmitForm)}>
+    <form role="form" className="w-full" onSubmit={handleSubmit(onSubmitForm)}>
       <div className=" w-full flex justify-between   ">
         <div className=" w-full ">
           <Field>
@@ -154,21 +146,28 @@ const TaskForm = ({
       </div>
 
       <div className="mt-6 flex justify-end gap-3">
-        <Button
-          type="button"
-          className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] dark:hover:text-white hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-          disabled={isLoading}
-          onClick={close}
-        >
-          Cancelar
-        </Button>
+        {!isLoading && (
+          <Link
+            href={"/tasks"}
+            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex gap-2 items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] dark:hover:text-white hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
+          >
+            <i className="ri-arrow-left-line text-lg"></i>
+            Back
+          </Link>
+        )}
         <Button
           type="submit"
           disabled={isLoading}
           className="rounded-full dark:bg-white text-black transition-colors flex gap-2 items-center justify-center bg-gray-300 hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] dark:hover:text-white hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
         >
-          {dataTask ? `Update` : `Create`}
-          <i className="ri-save-line"></i>
+          {isLoading ? (
+            <LoadingComponent />
+          ) : (
+            <>
+              {dataTask ? `Update` : `Create`}
+              <i className="ri-save-line"></i>
+            </>
+          )}
         </Button>
       </div>
       <div className="w-full">

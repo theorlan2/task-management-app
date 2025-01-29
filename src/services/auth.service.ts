@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { LoginCriteria } from "@/types/criterias/auth/login.criteria";
-
-import { AuthToken } from "@/types/models/user/auth.model";
-
 import { getCookie } from "@/lib/jsCookies";
+
+import { SigningCriteria } from "@/types/auth/signing.criteria";
+import { AuthToken } from "@/types/auth/auth.model";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -17,17 +16,16 @@ export const authApi = createApi({
       headers.append("Authorization", `Bearer ${token}`);
     },
   }),
-  tagTypes: ["login"],
+  tagTypes: [""],
   endpoints: (builder) => ({
-    loginUser: builder.mutation<AuthToken, LoginCriteria>({
+    signinUser: builder.mutation<AuthToken, SigningCriteria>({
       query: (data) => ({
         url: "/login",
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["login"],
     }),
   }),
 });
 
-export const { useLoginUserMutation } = authApi;
+export const { useSigninUserMutation } = authApi;
