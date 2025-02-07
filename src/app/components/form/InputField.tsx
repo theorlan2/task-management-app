@@ -9,7 +9,7 @@ export type FormFieldProps = {
 const InputField = forwardRef<HTMLInputElement, FormFieldProps>(
   ({ error, ...props }, ref) => (
     <>
-      <input ref={ref} {...props} value={props.value || ""} />
+      <input ref={ref} {...props} role="textbox" value={props.value || ""} />
       {error && (
         <span className="text-sm text-red-300 error-message">
           {error.message}

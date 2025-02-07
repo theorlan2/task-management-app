@@ -77,7 +77,7 @@ const SigninForm: FunctionComponent<Props> = (props) => {
             render={({ field }) => (
               <InputField
                 {...field}
-                id="input-email"
+                id="input-password"
                 disabled={props.isLoading}
                 placeholder="Password"
                 role="input"
@@ -92,6 +92,7 @@ const SigninForm: FunctionComponent<Props> = (props) => {
         </Field>
 
         <button
+          role="button"
           disabled={props.isLoading}
           className="p-2 bg-primary-blue dark:bg-primary-dark text-white font-bold uppercase rounded-lg mx-0 mt-3"
           type="submit"

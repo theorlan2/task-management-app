@@ -32,10 +32,12 @@ const LoginPage = () => {
     }
   }
 
-  console.log("isError", error);
   return (
     <div className="card-login w-full max-w-md bg-white border border-gray-200 dark:bg-gray-800 dark:text-gray-100 shadow-lg px-4 py-6 ">
-      <h4 className="text-center font-bold  text-xl text-gray-600 dark:text-white mt-6 mb-4">
+      <h4
+        role="heading"
+        className="text-center font-bold  text-xl text-gray-600 dark:text-white mt-6 mb-4"
+      >
         LOGIN
       </h4>
       <SigninForm
