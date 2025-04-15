@@ -5,11 +5,10 @@ import { useRouter } from "next/navigation";
 
 import SigninForm from "./_components/SigninForm";
 
-import { SigningCriteria } from "@/types/auth/signing.criteria";
-
 import { useAuth } from "@/context/AuthContexts";
 import { useCookies } from "@/hooks/useCookie";
 import { useSigninUserMutation } from "@/services/auth.service";
+import { Signing } from "@/types/auth/auth.model";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -18,7 +17,7 @@ const LoginPage = () => {
   const [sendLoginUser, { isError, error, isLoading }] =
     useSigninUserMutation();
 
-  async function onSubmitLogin(data: SigningCriteria) {
+  async function onSubmitLogin(data: Signing) {
     try {
       const response = await sendLoginUser(data).unwrap();
       setTheCookie("accessToken", response.accessToken);
@@ -32,9 +31,8 @@ const LoginPage = () => {
     }
   }
 
-  console.log("isError", error);
   return (
-    <div className="card-login w-full max-w-md bg-white border border-gray-200 dark:bg-gray-800 dark:text-gray-100 shadow-lg px-4 py-6 ">
+    <article className="card-login w-full max-w-md bg-white border border-gray-200 dark:bg-gray-800 dark:text-gray-100 shadow-lg px-4 py-6 ">
       <h4 className="text-center font-bold  text-xl text-gray-600 dark:text-white mt-6 mb-4">
         LOGIN
       </h4>
@@ -44,7 +42,7 @@ const LoginPage = () => {
         haveError={isError}
         errorMessage={error}
       />
-    </div>
+    </article>
   );
 };
 

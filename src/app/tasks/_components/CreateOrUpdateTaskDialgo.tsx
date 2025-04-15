@@ -3,7 +3,6 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 
 import TaskForm from "./TaskForm";
 
-import { TaskCriteria } from "@/types/task/task.criteria";
 import { Task } from "@/types/task/task.model";
 
 type Props = {
@@ -12,7 +11,7 @@ type Props = {
   isLoading: boolean;
   isError?: boolean;
   setIsOpen: (v: boolean) => void;
-  onSubmit?: (v: TaskCriteria) => void;
+  onSubmit?: (v: Partial<Task>) => void;
 };
 
 const CreateOrUpdateTaskDialog = ({
@@ -47,7 +46,6 @@ const CreateOrUpdateTaskDialog = ({
                   isLoading={isLoading}
                   isError={isError}
                   onSubmit={onSubmit}
-                  setIsOpen={setIsOpen}
                 />
               </div>
             </DialogPanel>

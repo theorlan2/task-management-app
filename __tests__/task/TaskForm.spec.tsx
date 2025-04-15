@@ -7,14 +7,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import TaskForm from "@/app/tasks/_components/TaskForm";
-
-import { TaskCriteria } from "@/types/task/task.criteria";
+import { Task } from "@/types/task/task.model";
 
 describe("TaskForm", () => {
   const onSubmitMock = jest.fn();
   const setIsOpenMock = jest.fn();
 
-  const renderComponent = (dataTask?: TaskCriteria, isLoading = false) => {
+  const renderComponent = (dataTask?: Task, isLoading = false) => {
     const taskFormProps = {
       dataTask,
       isLoading,

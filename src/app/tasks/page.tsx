@@ -18,7 +18,7 @@ export default function Home() {
   const [sendDeleteTask] = useDeleteTaskMutation();
 
   async function deleteTask(data?: Task) {
-    if (data) {
+    if (data && data.id) {
       try {
         toast.promise(sendDeleteTask(data.id), {
           loading: "Loading...",
@@ -42,7 +42,7 @@ export default function Home() {
     <div className="items-center justify-items-center min-h-screen p-4 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="my-4  w-full">
         <div className="container mx-auto">
-          <div className="w-full flex flex-col gap-8 row-start-2 items-center">
+          <section className="w-full flex flex-col gap-8 row-start-2 items-center">
             <div className="w-full  max-w-xl">
               <h3 className="text-xl mb-2">Tasks </h3>
               <div className="border border-gray-200 dark:border-white/35 rounded-lg p-2 sm:p-4">
@@ -58,7 +58,7 @@ export default function Home() {
                 <i className="ri-add-line"></i>
               </Link>
             </div>
-          </div>
+          </section>
         </div>
         <AlertDialog
           isOpen={isOpenAlertDialog}

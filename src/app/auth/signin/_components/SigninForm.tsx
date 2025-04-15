@@ -4,17 +4,19 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { SigningCriteria } from "@/types/auth/signing.criteria";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
 import { Field, Label } from "@headlessui/react";
+
+import { Signing } from "@/types/auth/auth.model";
+
 import InputField from "@/app/components/form/InputField";
 
 type Props = {
   isLoading: boolean;
   haveError: boolean;
   errorMessage?: FetchBaseQueryError | SerializedError | undefined;
-  onSubmit: (dataForm: SigningCriteria) => void;
+  onSubmit: (dataForm: Signing) => void;
 };
 
 const signinSchema = yup.object().shape({
@@ -27,16 +29,16 @@ const SigninForm: FunctionComponent<Props> = (props) => {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<SigningCriteria>({
+  } = useForm<Signing>({
     resolver: yupResolver(signinSchema),
   });
 
-  function submit(data: SigningCriteria) {
+  function submit(data: Signing) {
     props.onSubmit(data);
   }
 
   return (
-    <div className=" login-form w-full">
+    <section className=" login-form w-full">
       <form onSubmit={handleSubmit(submit)} className="flex flex-col gap-2">
         <Field>
           <Label
@@ -105,7 +107,7 @@ const SigninForm: FunctionComponent<Props> = (props) => {
           </div>
         )}
       </form>
-    </div>
+    </section>
   );
 };
 

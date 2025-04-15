@@ -4,3 +4,8 @@ export type AuthToken = {
   accessToken: string;
   user: UserI;
 };
+
+export type Signing = {
+  email: string;
+  password: string;
+};

@@ -8,7 +8,6 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { TaskCriteria } from "@/types/task/task.criteria";
 import { TaskStatusEnum } from "@/types/task/task.enum";
 import { Task } from "@/types/task/task.model";
 
@@ -18,11 +17,11 @@ type Props = {
   dataTask?: Task;
   isLoading: boolean;
   isError?: boolean;
-  onSubmit?: (v: TaskCriteria) => void;
+  onSubmit?: (v: Partial<Task>) => void;
 };
 
 const taskSchema = yup.object().shape({
-  id: yup.string().optional().optional(),
+  id: yup.string().optional(),
   title: yup.string().required(),
   description: yup.string().optional().nullable(),
   status: yup.string().required(),
@@ -37,10 +36,10 @@ const TaskForm = ({ dataTask, isLoading, isError, onSubmit }: Props) => {
     reset,
   } = useForm({
     defaultValues: {},
-    resolver: yupResolver<TaskCriteria>(taskSchema),
+    resolver: yupResolver<Partial<Task>>(taskSchema),
   });
 
-  function onSubmitForm(data: TaskCriteria) {
+  function onSubmitForm(data: Partial<Task>) {
     if (onSubmit) {
       onSubmit(data);
     }

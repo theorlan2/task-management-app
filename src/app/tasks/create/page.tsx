@@ -5,7 +5,7 @@ import { useCreateTaskMutation } from "@/services/task.service";
 
 import TaskForm from "../_components/TaskForm";
 
-import { TaskCriteria } from "@/types/task/task.criteria";
+import { Task } from "@/types/task/task.model";
 
 export default function CreateTaskPage() {
   const [
@@ -13,7 +13,7 @@ export default function CreateTaskPage() {
     { isError: isCreateTaskError, isLoading: isCreateTaskLoading },
   ] = useCreateTaskMutation();
 
-  async function sendTask(data: TaskCriteria) {
+  async function sendTask(data: Partial<Task>) {
     try {
       await sendCreateTask(data);
       toast.success("Task created");

@@ -3,7 +3,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getCookie } from "@/lib/jsCookies";
 
 import { Task } from "@/types/task/task.model";
-import { TaskCriteria } from "@/types/task/task.criteria";
 
 export const tasksApi = createApi({
   reducerPath: "tasksApi",
@@ -30,7 +29,7 @@ export const tasksApi = createApi({
       }),
       providesTags: ["tasks"],
     }),
-    createTask: builder.mutation<Task, TaskCriteria>({
+    createTask: builder.mutation<Task, Partial<Task>>({
       query: (data) => ({
         url: "/tasks",
         method: "POST",
@@ -38,7 +37,7 @@ export const tasksApi = createApi({
       }),
       invalidatesTags: ["tasks"],
     }),
-    updateTask: builder.mutation<Task, TaskCriteria>({
+    updateTask: builder.mutation<Task, Partial<Task>>({
       query: (data) => ({
         url: `/tasks/${data.id}`,
         method: "PUT",

@@ -2,14 +2,13 @@
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
 
+import TaskForm from "../../_components/TaskForm";
+
 import {
   useGetTaskByIdQuery,
   useUpdateTaskMutation,
 } from "@/services/task.service";
-
-import TaskForm from "../../_components/TaskForm";
-
-import { TaskCriteria } from "@/types/task/task.criteria";
+import { Task } from "@/types/task/task.model";
 
 export default function UpdateTaskPage() {
   const { id } = useParams();
@@ -20,7 +19,7 @@ export default function UpdateTaskPage() {
     { isError: isUpdateTaskError, isLoading: isUpdateTaskLoading },
   ] = useUpdateTaskMutation();
 
-  async function sendTask(data: TaskCriteria) {
+  async function sendTask(data: Partial<Task>) {
     if (data.id) {
       try {
         await sendUpdateTask(data);
